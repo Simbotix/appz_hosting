@@ -7,6 +7,7 @@
     "field_order": [
         "plan_name",
         "title",
+        "category",
         "enabled",
         "column_break_basic",
         "provider",
@@ -42,6 +43,14 @@
             "in_list_view": 1,
             "label": "Display Title",
             "reqd": 1
+        },
+        {
+            "fieldname": "category",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Category",
+            "options": "cloud\npro\ndedicated\ndedicated-intel",
+            "default": "cloud"
         },
         {
             "fieldname": "enabled",
