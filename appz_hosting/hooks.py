@@ -1,7 +1,7 @@
 app_name = "appz_hosting"
 app_title = "AppZ Hosting"
 app_publisher = "Simbotix"
-app_description = "White-label Managed Hosting Platform"
+app_description = "Cloud Partner - Internal tooling for managing SMB clients (1-50 person teams)"
 app_email = "rajesh@simbotix.com"
 app_license = "MIT"
 
@@ -36,13 +36,6 @@ app_license = "MIT"
 #     "Role": "home_page"
 # }
 
-# Website Routes
-website_route_rules = [
-    {"from_route": "/my-services", "to_route": "my-services"},
-    {"from_route": "/my-services/<path:service>", "to_route": "service-detail"},
-    {"from_route": "/request-service", "to_route": "request-service"},
-]
-
 # Generators
 # ----------
 
@@ -57,12 +50,11 @@ scheduler_events = {
         "appz_hosting.core.backup.run_scheduled_backups",
     ],
     "daily": [
-        "appz_hosting.core.monitoring.update_all_service_stats",
+        "appz_hosting.core.monitoring.check_all_client_sites",
         "appz_hosting.core.backup.cleanup_failed_backups",
-        "appz_hosting.core.backup.prune_old_backups",
     ],
-    "weekly": [
-        "appz_hosting.core.backup.test_random_backups",
+    "monthly": [
+        "appz_hosting.appz_hosting.doctype.client.client.reset_all_monthly_hours",
     ],
 }
 
@@ -91,13 +83,12 @@ after_install = "appz_hosting.install.after_install"
 # ---------------
 
 doc_events = {
-    "Hosted Service": {
-        "after_insert": "appz_hosting.core.service.on_service_created",
-        "on_update": "appz_hosting.core.service.on_service_updated",
-        "on_trash": "appz_hosting.core.service.on_service_deleted",
+    "Client": {
+        "after_insert": "appz_hosting.core.client_events.on_client_created",
+        "on_update": "appz_hosting.core.client_events.on_client_updated",
     },
-    "Service Backup Config": {
-        "after_insert": "appz_hosting.core.backup.on_backup_config_created",
+    "Support Entry": {
+        "after_insert": "appz_hosting.core.client_events.on_support_entry_created",
     },
 }
 

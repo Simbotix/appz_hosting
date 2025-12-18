@@ -1,108 +1,134 @@
 """
-Monitoring utilities for AppZ Hosting
+Monitoring utilities for AppZ Hosting - Client Site monitoring
 """
 
 import frappe
+from frappe.utils import now_datetime
+import requests
 
 
-def update_all_service_stats():
-    """Daily: Update stats for all active services"""
-    services = frappe.get_all(
-        "Hosted Service",
+def check_all_client_sites():
+    """Daily: Check health of all active client sites"""
+    sites = frappe.get_all(
+        "Client Site",
         filters={"status": "Active"},
-        fields=["name", "server"]
+        fields=["name", "client", "site_type", "domain", "server"],
     )
 
-    # Group by server to minimize SSH connections
-    servers = {}
-    for service in services:
-        if service.server not in servers:
-            servers[service.server] = []
-        servers[service.server].append(service.name)
-
-    for server_name, service_names in servers.items():
+    for site in sites:
         try:
-            update_server_services(server_name, service_names)
+            check_site_health(site)
         except Exception as e:
-            frappe.log_error(f"Failed to update stats for server {server_name}: {e}")
+            frappe.log_error(f"Failed to check site {site.name}: {e}")
 
-
-def update_server_services(server_name, service_names):
-    """Update stats for all services on a server"""
-    from appz_hosting.core.deployer import Deployer
-
-    deployer = Deployer(server_name)
-
-    for service_name in service_names:
-        try:
-            # Get Docker stats
-            stats = deployer.get_stats(service_name)
-
-            # Parse stats (format: "name|mem|cpu")
-            if stats:
-                for line in stats.strip().split("\n"):
-                    if not line:
-                        continue
-                    parts = line.split("|")
-                    if len(parts) >= 3:
-                        # Parse memory (e.g., "256MiB / 512MiB")
-                        mem_str = parts[1].split("/")[0].strip()
-                        if "GiB" in mem_str:
-                            mem_mb = float(mem_str.replace("GiB", "")) * 1024
-                        elif "MiB" in mem_str:
-                            mem_mb = float(mem_str.replace("MiB", ""))
-                        else:
-                            mem_mb = 0
-
-                        # Parse CPU (e.g., "5.25%")
-                        cpu_str = parts[2].strip().replace("%", "")
-                        cpu_percent = float(cpu_str) if cpu_str else 0
-
-                        # Update service
-                        frappe.db.set_value("Hosted Service", service_name, {
-                            "actual_ram_mb": int(mem_mb),
-                            "actual_cpu_percent": cpu_percent,
-                        }, update_modified=False)
-
-            # Get disk usage
-            disk_result = deployer._exec(f"du -sm /apps/{service_name} 2>/dev/null | cut -f1")
-            if disk_result["stdout"].strip():
-                storage_mb = int(disk_result["stdout"].strip())
-                frappe.db.set_value("Hosted Service", service_name, {
-                    "actual_storage_gb": round(storage_mb / 1024, 2),
-                    "storage_used_gb": round(storage_mb / 1024, 2),
-                }, update_modified=False)
-
-        except Exception as e:
-            frappe.log_error(f"Failed to update stats for {service_name}: {e}")
-
-    deployer.close()
     frappe.db.commit()
 
-    # Update server capacity
-    server = frappe.get_doc("AppZ Server", server_name)
-    server.update_capacity()
-    server.last_health_check = frappe.utils.now()
-    server.save(ignore_permissions=True)
 
+def check_site_health(site):
+    """Check health of a single client site"""
+    if not site.domain:
+        return
 
-def check_service_health(service_name):
-    """Check if a service is healthy"""
-    service = frappe.get_doc("Hosted Service", service_name)
-    plan = frappe.get_doc("Service Plan", service.plan)
-    template = frappe.get_doc("Deployment Template", plan.template)
-
-    import requests
+    # Check if site is reachable
     try:
-        url = f"https://{service.domain}{template.healthcheck_path}"
-        response = requests.get(url, timeout=10, verify=True)
-        return response.status_code < 400
-    except:
-        return False
+        url = f"https://{site.domain}"
+        response = requests.get(url, timeout=15, verify=True)
+        healthy = response.status_code < 400
+    except Exception:
+        healthy = False
+
+    # Log result (could extend to store in a log table)
+    if not healthy:
+        frappe.log_error(
+            f"Site health check failed: {site.domain}",
+            f"Client Site: {site.name}",
+        )
+
+    # Update backup status if server is available
+    if site.server:
+        check_site_backup_status(site)
 
 
-def get_service_uptime(service_name, days=30):
-    """Calculate uptime percentage for a service"""
-    # This would integrate with ClickStack or uptime monitoring
-    # For now, return default
-    return 99.9
+def check_site_backup_status(site):
+    """Check backup status for a site"""
+    # Get latest backup if using S3
+    # This is a placeholder - would integrate with actual backup system
+    pass
+
+
+def get_client_health_summary(client_name):
+    """Get health summary for all sites of a client"""
+    sites = frappe.get_all(
+        "Client Site",
+        filters={"client": client_name, "status": "Active"},
+        fields=["name", "site_name", "site_type", "domain", "backup_status", "last_backup_date"],
+    )
+
+    healthy = 0
+    issues = []
+
+    for site in sites:
+        # Check if domain is accessible
+        if site.domain:
+            try:
+                response = requests.get(f"https://{site.domain}", timeout=10)
+                if response.status_code < 400:
+                    healthy += 1
+                else:
+                    issues.append(f"{site.site_name}: HTTP {response.status_code}")
+            except Exception as e:
+                issues.append(f"{site.site_name}: {str(e)[:50]}")
+        else:
+            healthy += 1  # No domain to check
+
+        # Check backup status
+        if site.backup_status == "Failed":
+            issues.append(f"{site.site_name}: Backup failed")
+
+    return {
+        "total_sites": len(sites),
+        "healthy": healthy,
+        "issues": issues,
+        "health_percent": round(healthy / len(sites) * 100, 1) if sites else 100,
+    }
+
+
+def update_server_capacity(server_name):
+    """Update capacity metrics for a server"""
+    from appz_hosting.core.deployer import Deployer
+
+    try:
+        deployer = Deployer(server_name)
+
+        # Get memory usage
+        mem_result = deployer._exec("free -m | grep Mem | awk '{print $3}'")
+        used_ram_mb = int(mem_result["stdout"].strip()) if mem_result["stdout"].strip() else 0
+
+        # Get CPU load
+        cpu_result = deployer._exec("top -bn1 | grep 'Cpu(s)' | awk '{print $2}'")
+        cpu_percent = float(cpu_result["stdout"].strip()) if cpu_result["stdout"].strip() else 0
+
+        # Get disk usage
+        disk_result = deployer._exec("df -BG / | tail -1 | awk '{print $3}' | tr -d 'G'")
+        used_storage_gb = int(disk_result["stdout"].strip()) if disk_result["stdout"].strip() else 0
+
+        deployer.close()
+
+        # Update server record
+        server = frappe.get_doc("AppZ Server", server_name)
+        server.used_ram_gb = round(used_ram_mb / 1024, 2)
+        server.used_cpu_cores = round(cpu_percent / 100 * server.total_cpu_cores, 2)
+        server.used_storage_gb = used_storage_gb
+        server.last_health_check = now_datetime()
+
+        # Calculate capacity percentage (based on RAM as primary constraint)
+        if server.total_ram_gb:
+            server.capacity_percent = round(server.used_ram_gb / server.total_ram_gb * 100, 1)
+
+        # Count client sites on this server
+        server.service_count = frappe.db.count("Client Site", {"server": server_name, "status": "Active"})
+
+        server.save(ignore_permissions=True)
+
+    except Exception as e:
+        frappe.log_error(f"Failed to update server capacity {server_name}: {e}")

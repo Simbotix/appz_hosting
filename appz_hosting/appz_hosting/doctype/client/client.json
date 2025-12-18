@@ -1,0 +1,296 @@
+{
+    "actions": [],
+    "autoname": "field:company_name",
+    "creation": "2025-01-18 10:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "company_name",
+        "contact_person",
+        "email",
+        "phone",
+        "column_break_basic",
+        "team_size",
+        "industry",
+        "package",
+        "status",
+        "start_date",
+        "contract_section",
+        "setup_fee",
+        "monthly_retainer",
+        "support_hours_included",
+        "column_break_contract",
+        "payment_method",
+        "billing_currency",
+        "erp_customer",
+        "support_section",
+        "support_hours_used_this_month",
+        "support_hours_remaining",
+        "last_checkin_date",
+        "column_break_support",
+        "next_checkin_date",
+        "response_sla",
+        "systems_section",
+        "erpnext_site_url",
+        "website_domain",
+        "n8n_instance",
+        "column_break_systems",
+        "server",
+        "backup_status",
+        "last_backup_date",
+        "notes_section",
+        "notes"
+    ],
+    "fields": [
+        {
+            "fieldname": "company_name",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Company Name",
+            "reqd": 1,
+            "unique": 1
+        },
+        {
+            "fieldname": "contact_person",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Contact Person",
+            "reqd": 1
+        },
+        {
+            "fieldname": "email",
+            "fieldtype": "Data",
+            "label": "Email",
+            "options": "Email",
+            "reqd": 1
+        },
+        {
+            "fieldname": "phone",
+            "fieldtype": "Data",
+            "label": "Phone",
+            "options": "Phone"
+        },
+        {
+            "fieldname": "column_break_basic",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "team_size",
+            "fieldtype": "Int",
+            "in_list_view": 1,
+            "label": "Team Size",
+            "description": "Number of employees (1-50)",
+            "reqd": 1
+        },
+        {
+            "fieldname": "industry",
+            "fieldtype": "Select",
+            "label": "Industry",
+            "options": "Professional Services\nManufacturing\nTrading\nE-commerce\nHealthcare\nEducation\nReal Estate\nLogistics\nNGO/Nonprofit\nOther"
+        },
+        {
+            "fieldname": "package",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Package",
+            "options": "Starter\nGrowth\nBusiness",
+            "reqd": 1
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Status",
+            "options": "Prospect\nOnboarding\nActive\nSuspended\nChurned",
+            "default": "Prospect"
+        },
+        {
+            "fieldname": "start_date",
+            "fieldtype": "Date",
+            "label": "Start Date"
+        },
+        {
+            "fieldname": "contract_section",
+            "fieldtype": "Section Break",
+            "label": "Contract & Billing"
+        },
+        {
+            "fieldname": "setup_fee",
+            "fieldtype": "Currency",
+            "label": "Setup Fee"
+        },
+        {
+            "fieldname": "monthly_retainer",
+            "fieldtype": "Currency",
+            "label": "Monthly Retainer",
+            "reqd": 1
+        },
+        {
+            "fieldname": "support_hours_included",
+            "fieldtype": "Int",
+            "label": "Support Hours Included",
+            "default": 4,
+            "description": "Hours included per month"
+        },
+        {
+            "fieldname": "column_break_contract",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "payment_method",
+            "fieldtype": "Select",
+            "label": "Payment Method",
+            "options": "Razorpay\nBank Transfer\nBitcoin\nOther"
+        },
+        {
+            "fieldname": "billing_currency",
+            "fieldtype": "Select",
+            "label": "Billing Currency",
+            "options": "USD\nINR\nBTC",
+            "default": "USD"
+        },
+        {
+            "fieldname": "erp_customer",
+            "fieldtype": "Link",
+            "label": "ERP Customer",
+            "options": "Customer",
+            "description": "Link to Customer in ERPNext for billing"
+        },
+        {
+            "fieldname": "support_section",
+            "fieldtype": "Section Break",
+            "label": "Support Tracking"
+        },
+        {
+            "fieldname": "support_hours_used_this_month",
+            "fieldtype": "Float",
+            "label": "Hours Used This Month",
+            "read_only": 1,
+            "default": 0
+        },
+        {
+            "fieldname": "support_hours_remaining",
+            "fieldtype": "Float",
+            "label": "Hours Remaining",
+            "read_only": 1
+        },
+        {
+            "fieldname": "last_checkin_date",
+            "fieldtype": "Date",
+            "label": "Last Check-in"
+        },
+        {
+            "fieldname": "column_break_support",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "next_checkin_date",
+            "fieldtype": "Date",
+            "label": "Next Check-in"
+        },
+        {
+            "fieldname": "response_sla",
+            "fieldtype": "Select",
+            "label": "Response SLA",
+            "options": "24 hours\n12 hours\n4 hours",
+            "default": "24 hours"
+        },
+        {
+            "fieldname": "systems_section",
+            "fieldtype": "Section Break",
+            "label": "Systems"
+        },
+        {
+            "fieldname": "erpnext_site_url",
+            "fieldtype": "Data",
+            "label": "ERPNext Site URL"
+        },
+        {
+            "fieldname": "website_domain",
+            "fieldtype": "Data",
+            "label": "Website Domain"
+        },
+        {
+            "fieldname": "n8n_instance",
+            "fieldtype": "Data",
+            "label": "n8n Instance",
+            "description": "n8n workflow prefix or tag for this client"
+        },
+        {
+            "fieldname": "column_break_systems",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "server",
+            "fieldtype": "Link",
+            "label": "Primary Server",
+            "options": "AppZ Server"
+        },
+        {
+            "fieldname": "backup_status",
+            "fieldtype": "Select",
+            "label": "Backup Status",
+            "options": "OK\nWarning\nFailed\nUnknown",
+            "default": "Unknown",
+            "read_only": 1
+        },
+        {
+            "fieldname": "last_backup_date",
+            "fieldtype": "Datetime",
+            "label": "Last Backup",
+            "read_only": 1
+        },
+        {
+            "fieldname": "notes_section",
+            "fieldtype": "Section Break",
+            "label": "Notes"
+        },
+        {
+            "fieldname": "notes",
+            "fieldtype": "Text Editor",
+            "label": "Notes"
+        }
+    ],
+    "index_web_pages_for_search": 0,
+    "links": [
+        {
+            "link_doctype": "Client Site",
+            "link_fieldname": "client"
+        },
+        {
+            "link_doctype": "Support Entry",
+            "link_fieldname": "client"
+        },
+        {
+            "link_doctype": "Client Automation",
+            "link_fieldname": "client"
+        }
+    ],
+    "modified": "2025-01-18 10:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "AppZ Hosting",
+    "name": "Client",
+    "naming_rule": "By fieldname",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1
+}
