@@ -27,9 +27,9 @@ def create_server_plans():
             "max_apps": 3,
             "description": "Perfect for small apps, development, and staging",
             "cost_eur": 7,
-            "price_usd": 19,
-            "price_inr": 1100,  # 30% off USD
-            "price_btc_sats": 11400,  # 40% off USD
+            "price_usd": 39,
+            "price_inr": 2275,  # 30% off USD
+            "price_btc_sats": 23400,  # 40% off USD
         },
         {
             "plan_name": "pro",
@@ -43,9 +43,9 @@ def create_server_plans():
             "max_apps": 10,
             "description": "Production workloads and multiple apps",
             "cost_eur": 49,
-            "price_usd": 99,
-            "price_inr": 5800,
-            "price_btc_sats": 59400,
+            "price_usd": 239,
+            "price_inr": 13950,
+            "price_btc_sats": 143400,
         },
         {
             "plan_name": "business",
@@ -59,9 +59,9 @@ def create_server_plans():
             "max_apps": 20,
             "description": "High-traffic and enterprise workloads",
             "cost_eur": 77,
-            "price_usd": 149,
-            "price_inr": 8700,
-            "price_btc_sats": 89400,
+            "price_usd": 379,
+            "price_inr": 22100,
+            "price_btc_sats": 227400,
         },
     ]
 
