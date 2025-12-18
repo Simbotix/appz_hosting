@@ -34,12 +34,12 @@ def create_server_plans():
 
     plans = [
         # ============================================
-        # HETZNER PLANS (Default - best value)
+        # HETZNER PLANS (-h suffix)
         # ============================================
 
         # Cloud Servers (Hetzner Cloud CX - Shared vCPU)
         {
-            "plan_name": "starter-hetzner",
+            "plan_name": "starter-h",
             "title": "Starter",
             "category": "cloud",
             "provider": "Hetzner",
@@ -54,7 +54,7 @@ def create_server_plans():
             "cost_currency": "EUR",
         },
         {
-            "plan_name": "growth-hetzner",
+            "plan_name": "growth-h",
             "title": "Growth",
             "category": "cloud",
             "provider": "Hetzner",
@@ -69,7 +69,7 @@ def create_server_plans():
             "cost_currency": "EUR",
         },
         {
-            "plan_name": "scale-hetzner",
+            "plan_name": "scale-h",
             "title": "Scale",
             "category": "cloud",
             "provider": "Hetzner",
@@ -85,7 +85,7 @@ def create_server_plans():
         },
         # Pro Servers (Hetzner Cloud CCX - Dedicated vCPU)
         {
-            "plan_name": "pro-hetzner",
+            "plan_name": "pro-h",
             "title": "Pro",
             "category": "pro",
             "provider": "Hetzner",
@@ -100,7 +100,7 @@ def create_server_plans():
             "cost_currency": "EUR",
         },
         {
-            "plan_name": "business-hetzner",
+            "plan_name": "business-h",
             "title": "Business",
             "category": "pro",
             "provider": "Hetzner",
@@ -115,7 +115,7 @@ def create_server_plans():
             "cost_currency": "EUR",
         },
         {
-            "plan_name": "enterprise-hetzner",
+            "plan_name": "enterprise-h",
             "title": "Enterprise",
             "category": "pro",
             "provider": "Hetzner",
@@ -131,7 +131,7 @@ def create_server_plans():
         },
         # Dedicated Servers (Hetzner Robot AX - Bare Metal)
         {
-            "plan_name": "metal-hetzner",
+            "plan_name": "metal-h",
             "title": "Metal",
             "category": "dedicated",
             "provider": "Hetzner",
@@ -146,7 +146,7 @@ def create_server_plans():
             "cost_currency": "EUR",
         },
         {
-            "plan_name": "metal-pro-hetzner",
+            "plan_name": "metal-pro-h",
             "title": "Metal Pro",
             "category": "dedicated",
             "provider": "Hetzner",
@@ -161,7 +161,7 @@ def create_server_plans():
             "cost_currency": "EUR",
         },
         {
-            "plan_name": "metal-max-hetzner",
+            "plan_name": "metal-max-h",
             "title": "Metal Max",
             "category": "dedicated",
             "provider": "Hetzner",
@@ -176,7 +176,7 @@ def create_server_plans():
             "cost_currency": "EUR",
         },
         {
-            "plan_name": "metal-ultra-hetzner",
+            "plan_name": "metal-ultra-h",
             "title": "Metal Ultra",
             "category": "dedicated",
             "provider": "Hetzner",
@@ -192,13 +192,12 @@ def create_server_plans():
         },
 
         # ============================================
-        # VULTR PLANS (For BTC templates only)
-        # Hetzner ToS prohibits crypto-related services
+        # VULTR PLANS (-v suffix)
         # ============================================
 
         # Cloud Servers (Vultr VC2 - Shared vCPU)
         {
-            "plan_name": "starter-vultr",
+            "plan_name": "starter-v",
             "title": "Starter",
             "category": "cloud",
             "provider": "Vultr",
@@ -213,7 +212,7 @@ def create_server_plans():
             "cost_currency": "USD",
         },
         {
-            "plan_name": "growth-vultr",
+            "plan_name": "growth-v",
             "title": "Growth",
             "category": "cloud",
             "provider": "Vultr",
@@ -228,7 +227,7 @@ def create_server_plans():
             "cost_currency": "USD",
         },
         {
-            "plan_name": "scale-vultr",
+            "plan_name": "scale-v",
             "title": "Scale",
             "category": "cloud",
             "provider": "Vultr",
@@ -244,7 +243,7 @@ def create_server_plans():
         },
         # Pro Servers (Vultr VHP - High Performance)
         {
-            "plan_name": "pro-vultr",
+            "plan_name": "pro-v",
             "title": "Pro",
             "category": "pro",
             "provider": "Vultr",
@@ -259,7 +258,7 @@ def create_server_plans():
             "cost_currency": "USD",
         },
         {
-            "plan_name": "business-vultr",
+            "plan_name": "business-v",
             "title": "Business",
             "category": "pro",
             "provider": "Vultr",
@@ -274,7 +273,7 @@ def create_server_plans():
             "cost_currency": "USD",
         },
         {
-            "plan_name": "enterprise-vultr",
+            "plan_name": "enterprise-v",
             "title": "Enterprise",
             "category": "pro",
             "provider": "Vultr",
@@ -290,7 +289,7 @@ def create_server_plans():
         },
         # Dedicated Servers (Vultr Bare Metal)
         {
-            "plan_name": "metal-vultr",
+            "plan_name": "metal-v",
             "title": "Metal",
             "category": "dedicated",
             "provider": "Vultr",
@@ -305,7 +304,7 @@ def create_server_plans():
             "cost_currency": "USD",
         },
         {
-            "plan_name": "metal-pro-vultr",
+            "plan_name": "metal-pro-v",
             "title": "Metal Pro",
             "category": "dedicated",
             "provider": "Vultr",

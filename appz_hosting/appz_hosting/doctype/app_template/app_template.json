@@ -129,8 +129,8 @@
         {
             "fieldname": "requires_vultr",
             "fieldtype": "Check",
-            "label": "Requires Vultr",
-            "description": "BTC templates require Vultr (Hetzner ToS prohibits crypto)"
+            "label": "Requires Specific Infrastructure",
+            "description": "Template requires specific infrastructure (-v plans)"
         },
         {
             "fieldname": "docker_section",
