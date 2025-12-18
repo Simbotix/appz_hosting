@@ -21,6 +21,7 @@
         "healthcheck_path",
         "requires_database",
         "database_type",
+        "requires_vultr",
         "docker_section",
         "docker_compose",
         "env_template",
@@ -51,7 +52,7 @@
             "in_list_view": 1,
             "in_standard_filter": 1,
             "label": "Category",
-            "options": "CMS\nBusiness\nAutomation\nDevelopment\nDatabase\nOther"
+            "options": "CMS\nBusiness\nAutomation\nDevelopment\nDatabase\nBitcoin\nOther"
         },
         {
             "fieldname": "enabled",
@@ -124,6 +125,12 @@
             "label": "Database Type",
             "options": "\nMySQL\nPostgreSQL\nSQLite",
             "depends_on": "eval:doc.requires_database"
+        },
+        {
+            "fieldname": "requires_vultr",
+            "fieldtype": "Check",
+            "label": "Requires Vultr",
+            "description": "BTC templates require Vultr (Hetzner ToS prohibits crypto)"
         },
         {
             "fieldname": "docker_section",
