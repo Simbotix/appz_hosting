@@ -1,0 +1,211 @@
+{
+    "actions": [],
+    "autoname": "field:server_name",
+    "creation": "2025-01-15 10:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "server_name",
+        "provider",
+        "server_type",
+        "ip_address",
+        "ssh_key",
+        "status",
+        "column_break_1",
+        "location",
+        "monthly_cost",
+        "notes",
+        "resources_section",
+        "total_ram_gb",
+        "total_cpu_cores",
+        "total_storage_gb",
+        "column_break_2",
+        "used_ram_gb",
+        "used_cpu_cores",
+        "used_storage_gb",
+        "capacity_percent",
+        "thresholds_section",
+        "max_ram_percent",
+        "max_cpu_percent",
+        "column_break_3",
+        "service_count",
+        "last_health_check"
+    ],
+    "fields": [
+        {
+            "fieldname": "server_name",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Server Name",
+            "reqd": 1,
+            "unique": 1
+        },
+        {
+            "fieldname": "provider",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Provider",
+            "options": "Hetzner\nVultr\nOVHCloud\nOther",
+            "reqd": 1
+        },
+        {
+            "fieldname": "server_type",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Server Type",
+            "description": "e.g., AX52, CX32"
+        },
+        {
+            "fieldname": "ip_address",
+            "fieldtype": "Data",
+            "label": "IP Address",
+            "reqd": 1
+        },
+        {
+            "fieldname": "ssh_key",
+            "fieldtype": "Data",
+            "label": "SSH Key Path",
+            "description": "Path to private SSH key"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Status",
+            "options": "Active\nMaintenance\nRetired",
+            "default": "Active"
+        },
+        {
+            "fieldname": "column_break_1",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "location",
+            "fieldtype": "Data",
+            "label": "Location",
+            "description": "e.g., Falkenstein, Germany"
+        },
+        {
+            "fieldname": "monthly_cost",
+            "fieldtype": "Currency",
+            "label": "Monthly Cost (EUR)"
+        },
+        {
+            "fieldname": "notes",
+            "fieldtype": "Small Text",
+            "label": "Notes"
+        },
+        {
+            "fieldname": "resources_section",
+            "fieldtype": "Section Break",
+            "label": "Resources"
+        },
+        {
+            "fieldname": "total_ram_gb",
+            "fieldtype": "Int",
+            "label": "Total RAM (GB)",
+            "default": 64
+        },
+        {
+            "fieldname": "total_cpu_cores",
+            "fieldtype": "Int",
+            "label": "Total CPU Cores",
+            "default": 8
+        },
+        {
+            "fieldname": "total_storage_gb",
+            "fieldtype": "Int",
+            "label": "Total Storage (GB)",
+            "default": 2000
+        },
+        {
+            "fieldname": "column_break_2",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "used_ram_gb",
+            "fieldtype": "Float",
+            "label": "Used RAM (GB)",
+            "read_only": 1
+        },
+        {
+            "fieldname": "used_cpu_cores",
+            "fieldtype": "Float",
+            "label": "Used CPU Cores",
+            "read_only": 1
+        },
+        {
+            "fieldname": "used_storage_gb",
+            "fieldtype": "Float",
+            "label": "Used Storage (GB)",
+            "read_only": 1
+        },
+        {
+            "fieldname": "capacity_percent",
+            "fieldtype": "Percent",
+            "label": "Capacity Used",
+            "read_only": 1
+        },
+        {
+            "fieldname": "thresholds_section",
+            "fieldtype": "Section Break",
+            "label": "Thresholds"
+        },
+        {
+            "fieldname": "max_ram_percent",
+            "fieldtype": "Int",
+            "label": "Max RAM %",
+            "default": 80,
+            "description": "Don't allocate beyond this"
+        },
+        {
+            "fieldname": "max_cpu_percent",
+            "fieldtype": "Int",
+            "label": "Max CPU %",
+            "default": 70,
+            "description": "Don't allocate beyond this"
+        },
+        {
+            "fieldname": "column_break_3",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "service_count",
+            "fieldtype": "Int",
+            "label": "Service Count",
+            "read_only": 1
+        },
+        {
+            "fieldname": "last_health_check",
+            "fieldtype": "Datetime",
+            "label": "Last Health Check",
+            "read_only": 1
+        }
+    ],
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2025-01-15 10:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "AppZ Hosting",
+    "name": "AppZ Server",
+    "naming_rule": "By fieldname",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1
+}

@@ -1,0 +1,85 @@
+{
+    "version": "1.0.0",
+    "templates": {
+        "cms": {
+            "wordpress": {
+                "title": "WordPress",
+                "version": "6.4",
+                "status": "tested",
+                "min_ram_mb": 512,
+                "min_cpu": 0.25,
+                "min_storage_gb": 5,
+                "internal_port": 80
+            },
+            "ghost": {
+                "title": "Ghost",
+                "version": "5",
+                "status": "tested",
+                "min_ram_mb": 512,
+                "min_cpu": 0.25,
+                "min_storage_gb": 5,
+                "internal_port": 2368
+            }
+        },
+        "automation": {
+            "n8n": {
+                "title": "n8n",
+                "version": "latest",
+                "status": "tested",
+                "min_ram_mb": 1024,
+                "min_cpu": 0.5,
+                "min_storage_gb": 5,
+                "internal_port": 5678
+            }
+        },
+        "analytics": {
+            "plausible": {
+                "title": "Plausible Analytics",
+                "version": "2",
+                "status": "tested",
+                "min_ram_mb": 1024,
+                "min_cpu": 0.5,
+                "min_storage_gb": 10,
+                "internal_port": 8000
+            },
+            "umami": {
+                "title": "Umami",
+                "version": "latest",
+                "status": "tested",
+                "min_ram_mb": 512,
+                "min_cpu": 0.25,
+                "min_storage_gb": 5,
+                "internal_port": 3000
+            }
+        },
+        "databases": {
+            "postgres": {
+                "title": "PostgreSQL",
+                "version": "15",
+                "status": "tested",
+                "min_ram_mb": 512,
+                "min_cpu": 0.25,
+                "min_storage_gb": 10,
+                "internal_port": 5432
+            },
+            "mariadb": {
+                "title": "MariaDB",
+                "version": "10.11",
+                "status": "tested",
+                "min_ram_mb": 512,
+                "min_cpu": 0.25,
+                "min_storage_gb": 10,
+                "internal_port": 3306
+            },
+            "redis": {
+                "title": "Redis",
+                "version": "7",
+                "status": "tested",
+                "min_ram_mb": 256,
+                "min_cpu": 0.1,
+                "min_storage_gb": 1,
+                "internal_port": 6379
+            }
+        }
+    }
+}

@@ -1,0 +1,172 @@
+{
+    "actions": [],
+    "autoname": "field:name",
+    "creation": "2025-01-15 10:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "title",
+        "template",
+        "category",
+        "description",
+        "column_break_1",
+        "enabled",
+        "sort_order",
+        "features",
+        "pricing_section",
+        "price_usd",
+        "price_inr",
+        "price_btc_sats",
+        "billing_cycle",
+        "column_break_2",
+        "your_cost_eur",
+        "margin_percent",
+        "resources_section",
+        "included_storage_gb",
+        "included_bandwidth_gb"
+    ],
+    "fields": [
+        {
+            "fieldname": "title",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Title",
+            "reqd": 1
+        },
+        {
+            "fieldname": "template",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "label": "Template",
+            "options": "Deployment Template",
+            "reqd": 1
+        },
+        {
+            "fieldname": "category",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Category",
+            "options": "CMS\nAutomation\nAnalytics\nDatabases\nDev Tools\nCommunication\nFile Storage\nMonitoring\nERP"
+        },
+        {
+            "fieldname": "description",
+            "fieldtype": "Small Text",
+            "label": "Description"
+        },
+        {
+            "fieldname": "column_break_1",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "enabled",
+            "fieldtype": "Check",
+            "label": "Enabled",
+            "default": 1
+        },
+        {
+            "fieldname": "sort_order",
+            "fieldtype": "Int",
+            "label": "Sort Order",
+            "default": 0
+        },
+        {
+            "fieldname": "features",
+            "fieldtype": "Table",
+            "label": "Features",
+            "options": "Plan Feature"
+        },
+        {
+            "fieldname": "pricing_section",
+            "fieldtype": "Section Break",
+            "label": "Pricing"
+        },
+        {
+            "fieldname": "price_usd",
+            "fieldtype": "Currency",
+            "in_list_view": 1,
+            "label": "Price (USD)",
+            "reqd": 1
+        },
+        {
+            "fieldname": "price_inr",
+            "fieldtype": "Currency",
+            "label": "Price (INR)"
+        },
+        {
+            "fieldname": "price_btc_sats",
+            "fieldtype": "Int",
+            "label": "Price (Sats)"
+        },
+        {
+            "fieldname": "billing_cycle",
+            "fieldtype": "Select",
+            "label": "Billing Cycle",
+            "options": "Monthly\nYearly",
+            "default": "Monthly"
+        },
+        {
+            "fieldname": "column_break_2",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "your_cost_eur",
+            "fieldtype": "Currency",
+            "label": "Your Cost (EUR)",
+            "description": "Internal: What this costs you"
+        },
+        {
+            "fieldname": "margin_percent",
+            "fieldtype": "Percent",
+            "label": "Margin %",
+            "read_only": 1
+        },
+        {
+            "fieldname": "resources_section",
+            "fieldtype": "Section Break",
+            "label": "Included Resources"
+        },
+        {
+            "fieldname": "included_storage_gb",
+            "fieldtype": "Int",
+            "label": "Included Storage (GB)",
+            "default": 5
+        },
+        {
+            "fieldname": "included_bandwidth_gb",
+            "fieldtype": "Int",
+            "label": "Included Bandwidth (GB)",
+            "default": 100
+        }
+    ],
+    "index_web_pages_for_search": 1,
+    "links": [],
+    "modified": "2025-01-15 10:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "AppZ Hosting",
+    "name": "Service Plan",
+    "naming_rule": "By fieldname",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        },
+        {
+            "read": 1,
+            "role": "Guest"
+        }
+    ],
+    "sort_field": "sort_order",
+    "sort_order": "ASC",
+    "states": [],
+    "track_changes": 1
+}

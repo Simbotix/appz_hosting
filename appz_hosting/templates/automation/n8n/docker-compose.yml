@@ -1,0 +1,71 @@
+version: "3.8"
+
+services:
+  app:
+    image: n8nio/n8n:latest
+    container_name: {{ SERVICE_ID }}-app
+    restart: unless-stopped
+    environment:
+      - N8N_HOST={{ DOMAIN }}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - WEBHOOK_URL=https://{{ DOMAIN }}/
+      - N8N_ENCRYPTION_KEY={{ ENCRYPTION_KEY }}
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=db
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_USER=n8n
+      - DB_POSTGRESDB_PASSWORD={{ DB_PASSWORD }}
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=168
+      - GENERIC_TIMEZONE=UTC
+    volumes:
+      - {{ DATA_PATH }}/n8n:/home/node/.n8n
+    networks:
+      - internal
+      - appz-network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:5678/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "appz.service={{ SERVICE_ID }}"
+      - "appz.template=n8n"
+      - "appz.internal_port=5678"
+    deploy:
+      resources:
+        limits:
+          memory: {{ RAM_LIMIT | default('1G') }}
+          cpus: '{{ CPU_LIMIT | default('0.5') }}'
+
+  db:
+    image: postgres:15-alpine
+    container_name: {{ SERVICE_ID }}-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: n8n
+      POSTGRES_USER: n8n
+      POSTGRES_PASSWORD: {{ DB_PASSWORD }}
+    volumes:
+      - {{ DATA_PATH }}/postgres:/var/lib/postgresql/data
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U n8n"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "appz.service={{ SERVICE_ID }}"
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+
+networks:
+  internal:
+    driver: bridge
+  appz-network:
+    external: true

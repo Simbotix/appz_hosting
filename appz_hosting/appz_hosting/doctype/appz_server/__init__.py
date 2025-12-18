@@ -1,0 +1,1 @@
+# AppZ Server DocType

@@ -1,0 +1,1 @@
+# Hosted Service DocType

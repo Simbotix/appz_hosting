@@ -1,0 +1,246 @@
+{
+    "actions": [],
+    "autoname": "field:name",
+    "creation": "2025-01-15 10:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "title",
+        "version",
+        "category",
+        "status",
+        "column_break_1",
+        "description",
+        "icon",
+        "documentation_url",
+        "resources_section",
+        "min_ram_mb",
+        "min_cpu",
+        "min_storage_gb",
+        "column_break_2",
+        "recommended_ram_mb",
+        "internal_port",
+        "healthcheck_path",
+        "features_section",
+        "features",
+        "files_section",
+        "compose_file",
+        "env_template",
+        "backup_script",
+        "restore_script",
+        "config_section",
+        "supports_clickstack",
+        "supports_backup",
+        "backup_paths",
+        "testing_section",
+        "tested_date",
+        "tested_by",
+        "last_test_results"
+    ],
+    "fields": [
+        {
+            "fieldname": "title",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Title",
+            "reqd": 1
+        },
+        {
+            "fieldname": "version",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Version"
+        },
+        {
+            "fieldname": "category",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Category",
+            "options": "CMS\nAutomation\nAnalytics\nDatabases\nDev Tools\nCommunication\nFile Storage\nMonitoring\nERP",
+            "reqd": 1
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Status",
+            "options": "Draft\nTesting\nTested\nDeprecated",
+            "default": "Draft"
+        },
+        {
+            "fieldname": "column_break_1",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "description",
+            "fieldtype": "Small Text",
+            "label": "Description"
+        },
+        {
+            "fieldname": "icon",
+            "fieldtype": "Attach Image",
+            "label": "Icon"
+        },
+        {
+            "fieldname": "documentation_url",
+            "fieldtype": "Data",
+            "label": "Documentation URL",
+            "options": "URL"
+        },
+        {
+            "fieldname": "resources_section",
+            "fieldtype": "Section Break",
+            "label": "Resource Requirements"
+        },
+        {
+            "fieldname": "min_ram_mb",
+            "fieldtype": "Int",
+            "label": "Min RAM (MB)",
+            "default": 512
+        },
+        {
+            "fieldname": "min_cpu",
+            "fieldtype": "Float",
+            "label": "Min CPU Cores",
+            "default": 0.25
+        },
+        {
+            "fieldname": "min_storage_gb",
+            "fieldtype": "Int",
+            "label": "Min Storage (GB)",
+            "default": 5
+        },
+        {
+            "fieldname": "column_break_2",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "recommended_ram_mb",
+            "fieldtype": "Int",
+            "label": "Recommended RAM (MB)",
+            "default": 1024
+        },
+        {
+            "fieldname": "internal_port",
+            "fieldtype": "Int",
+            "label": "Internal Port",
+            "default": 80
+        },
+        {
+            "fieldname": "healthcheck_path",
+            "fieldtype": "Data",
+            "label": "Health Check Path",
+            "default": "/"
+        },
+        {
+            "fieldname": "features_section",
+            "fieldtype": "Section Break",
+            "label": "Features"
+        },
+        {
+            "fieldname": "features",
+            "fieldtype": "Table",
+            "label": "Features",
+            "options": "Template Feature"
+        },
+        {
+            "fieldname": "files_section",
+            "fieldtype": "Section Break",
+            "label": "Template Files"
+        },
+        {
+            "fieldname": "compose_file",
+            "fieldtype": "Attach",
+            "label": "Docker Compose File"
+        },
+        {
+            "fieldname": "env_template",
+            "fieldtype": "Attach",
+            "label": "Environment Template"
+        },
+        {
+            "fieldname": "backup_script",
+            "fieldtype": "Attach",
+            "label": "Backup Script"
+        },
+        {
+            "fieldname": "restore_script",
+            "fieldtype": "Attach",
+            "label": "Restore Script"
+        },
+        {
+            "fieldname": "config_section",
+            "fieldtype": "Section Break",
+            "label": "Configuration"
+        },
+        {
+            "fieldname": "supports_clickstack",
+            "fieldtype": "Check",
+            "label": "Supports ClickStack",
+            "default": 1
+        },
+        {
+            "fieldname": "supports_backup",
+            "fieldtype": "Check",
+            "label": "Supports Backup",
+            "default": 1
+        },
+        {
+            "fieldname": "backup_paths",
+            "fieldtype": "Small Text",
+            "label": "Backup Paths",
+            "description": "JSON array of paths to backup"
+        },
+        {
+            "fieldname": "testing_section",
+            "fieldtype": "Section Break",
+            "label": "Testing",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "tested_date",
+            "fieldtype": "Date",
+            "label": "Tested Date",
+            "read_only": 1
+        },
+        {
+            "fieldname": "tested_by",
+            "fieldtype": "Link",
+            "label": "Tested By",
+            "options": "User",
+            "read_only": 1
+        },
+        {
+            "fieldname": "last_test_results",
+            "fieldtype": "Long Text",
+            "label": "Last Test Results",
+            "read_only": 1
+        }
+    ],
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2025-01-15 10:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "AppZ Hosting",
+    "name": "Deployment Template",
+    "naming_rule": "By fieldname",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1
+}

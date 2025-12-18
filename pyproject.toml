@@ -1,0 +1,21 @@
+[project]
+name = "appz_hosting"
+authors = [
+    { name = "Simbotix", email = "rajesh@simbotix.com"}
+]
+description = "AppZ Studio - White-label Managed Hosting Platform"
+requires-python = ">=3.10"
+readme = "README.md"
+dynamic = ["version"]
+dependencies = [
+    "paramiko>=3.0.0",
+    "boto3>=1.28.0",
+    "jinja2>=3.0.0",
+]
+
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.bench.dev-dependencies]
+# Add dev dependencies here

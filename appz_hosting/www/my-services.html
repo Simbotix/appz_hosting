@@ -1,0 +1,257 @@
+{% extends "templates/web.html" %}
+
+{% block title %}My Services - AppZ Studio{% endblock %}
+
+{% block page_content %}
+<div class="appz-portal">
+    <div class="portal-header">
+        <h1>My Services</h1>
+        <a href="/request-service" class="btn btn-primary">+ Add Service</a>
+    </div>
+
+    {% if no_customer %}
+    <div class="alert alert-warning">
+        <p>No customer account found. Please contact support to set up your account.</p>
+    </div>
+    {% elif services %}
+    <div class="services-summary">
+        <div class="summary-card">
+            <span class="label">Active Services</span>
+            <span class="value">{{ services | length }}</span>
+        </div>
+        <div class="summary-card">
+            <span class="label">Monthly Total</span>
+            <span class="value">${{ total_monthly }}/mo</span>
+        </div>
+    </div>
+
+    <div class="services-grid">
+        {% for service in services %}
+        <div class="service-card status-{{ service.status | lower }}">
+            <div class="service-header">
+                <span class="plan-badge">{{ service.plan_title }}</span>
+                <span class="status-badge status-{{ service.status | lower }}">{{ service.status }}</span>
+            </div>
+
+            <h3>{{ service.service_name }}</h3>
+
+            {% if service.domain %}
+            <a href="https://{{ service.domain }}" target="_blank" class="domain-link">
+                {{ service.domain }} <i class="fa fa-external-link"></i>
+            </a>
+            {% endif %}
+
+            <div class="service-stats">
+                <div class="stat">
+                    <span class="label">Storage</span>
+                    <span class="value">{{ service.storage_used_gb or 0 }} GB</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Uptime</span>
+                    <span class="value">{{ service.uptime_percent or 99.9 }}%</span>
+                </div>
+            </div>
+
+            <div class="service-features">
+                {% if service.backup_enabled %}
+                <span class="feature"><i class="fa fa-check"></i> Backups</span>
+                {% endif %}
+                {% if service.clickstack_enabled %}
+                <span class="feature"><i class="fa fa-check"></i> Monitoring</span>
+                {% endif %}
+            </div>
+
+            <div class="service-actions">
+                <a href="/service/{{ service.name }}" class="btn btn-sm btn-default">Details</a>
+                <a href="/support?service={{ service.name }}" class="btn btn-sm btn-default">Support</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <div class="empty-icon">
+            <i class="fa fa-server fa-3x"></i>
+        </div>
+        <h3>No services yet</h3>
+        <p>Get started by adding your first service.</p>
+        <a href="/services" class="btn btn-primary">Browse Services</a>
+    </div>
+    {% endif %}
+
+    <div class="portal-footer">
+        <a href="/invoices">View Invoices</a>
+        <a href="/support">Support</a>
+        <a href="/services">Add More Services</a>
+    </div>
+</div>
+
+<style>
+.appz-portal {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.portal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.portal-header h1 {
+    margin: 0;
+}
+
+.services-summary {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.summary-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    min-width: 150px;
+}
+
+.summary-card .label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.9em;
+}
+
+.summary-card .value {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.service-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.service-card.status-active {
+    border-left: 4px solid #28a745;
+}
+
+.service-card.status-suspended {
+    border-left: 4px solid #ffc107;
+}
+
+.service-card.status-pending {
+    border-left: 4px solid #6c757d;
+}
+
+.service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.plan-badge {
+    background: var(--primary);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+}
+
+.status-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+}
+
+.status-badge.status-active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.status-suspended {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.service-card h3 {
+    margin: 0 0 5px 0;
+}
+
+.domain-link {
+    color: var(--text-muted);
+    font-size: 0.9em;
+}
+
+.service-stats {
+    display: flex;
+    gap: 20px;
+    margin: 15px 0;
+    padding: 10px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.service-stats .stat .label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.8em;
+}
+
+.service-stats .stat .value {
+    font-weight: bold;
+}
+
+.service-features {
+    margin: 10px 0;
+}
+
+.service-features .feature {
+    display: inline-block;
+    margin-right: 10px;
+    color: #28a745;
+    font-size: 0.9em;
+}
+
+.service-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.empty-icon {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.portal-footer {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+</style>
+{% endblock %}

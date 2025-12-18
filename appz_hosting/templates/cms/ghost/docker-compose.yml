@@ -1,0 +1,66 @@
+version: "3.8"
+
+services:
+  app:
+    image: ghost:5-alpine
+    container_name: {{ SERVICE_ID }}-app
+    restart: unless-stopped
+    environment:
+      url: https://{{ DOMAIN }}
+      database__client: mysql
+      database__connection__host: db
+      database__connection__database: ghost
+      database__connection__user: ghost
+      database__connection__password: {{ DB_PASSWORD }}
+      mail__transport: SMTP
+    volumes:
+      - {{ DATA_PATH }}/content:/var/lib/ghost/content
+    networks:
+      - internal
+      - appz-network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:2368/ghost/api/v4/admin/site/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "appz.service={{ SERVICE_ID }}"
+      - "appz.template=ghost"
+      - "appz.internal_port=2368"
+    deploy:
+      resources:
+        limits:
+          memory: {{ RAM_LIMIT | default('512M') }}
+          cpus: '{{ CPU_LIMIT | default('0.25') }}'
+
+  db:
+    image: mysql:8.0
+    container_name: {{ SERVICE_ID }}-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: {{ DB_ROOT_PASSWORD }}
+      MYSQL_DATABASE: ghost
+      MYSQL_USER: ghost
+      MYSQL_PASSWORD: {{ DB_PASSWORD }}
+    volumes:
+      - {{ DATA_PATH }}/mysql:/var/lib/mysql
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "appz.service={{ SERVICE_ID }}"
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+
+networks:
+  internal:
+    driver: bridge
+  appz-network:
+    external: true
