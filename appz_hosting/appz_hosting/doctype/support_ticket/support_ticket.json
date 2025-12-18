@@ -1,0 +1,139 @@
+{
+    "actions": [],
+    "autoname": "format:TKT-{YYYY}-{####}",
+    "creation": "2025-01-18 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "customer",
+        "subject",
+        "status",
+        "priority",
+        "column_break_basic",
+        "server",
+        "app",
+        "created_date",
+        "description_section",
+        "description",
+        "resolution_section",
+        "resolution",
+        "resolved_date",
+        "time_spent_hours"
+    ],
+    "fields": [
+        {
+            "fieldname": "customer",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Customer",
+            "options": "Customer",
+            "reqd": 1
+        },
+        {
+            "fieldname": "subject",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Subject",
+            "reqd": 1
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Status",
+            "options": "Open\nIn Progress\nWaiting on Customer\nResolved\nClosed",
+            "default": "Open"
+        },
+        {
+            "fieldname": "priority",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Priority",
+            "options": "Low\nMedium\nHigh\nUrgent",
+            "default": "Medium"
+        },
+        {
+            "fieldname": "column_break_basic",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "server",
+            "fieldtype": "Link",
+            "label": "Related Server",
+            "options": "Customer Server"
+        },
+        {
+            "fieldname": "app",
+            "fieldtype": "Link",
+            "label": "Related App",
+            "options": "Deployed App"
+        },
+        {
+            "fieldname": "created_date",
+            "fieldtype": "Date",
+            "label": "Created Date",
+            "default": "Today"
+        },
+        {
+            "fieldname": "description_section",
+            "fieldtype": "Section Break",
+            "label": "Description"
+        },
+        {
+            "fieldname": "description",
+            "fieldtype": "Text Editor",
+            "label": "Description",
+            "reqd": 1
+        },
+        {
+            "fieldname": "resolution_section",
+            "fieldtype": "Section Break",
+            "label": "Resolution"
+        },
+        {
+            "fieldname": "resolution",
+            "fieldtype": "Text Editor",
+            "label": "Resolution"
+        },
+        {
+            "fieldname": "resolved_date",
+            "fieldtype": "Date",
+            "label": "Resolved Date"
+        },
+        {
+            "fieldname": "time_spent_hours",
+            "fieldtype": "Float",
+            "label": "Time Spent (Hours)",
+            "description": "Billable at $75/hr if beyond included support"
+        }
+    ],
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2025-01-18 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "AppZ Hosting",
+    "name": "Support Ticket",
+    "naming_rule": "Expression",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1
+}

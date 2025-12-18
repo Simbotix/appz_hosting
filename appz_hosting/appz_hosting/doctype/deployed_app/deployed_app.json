@@ -1,0 +1,192 @@
+{
+    "actions": [],
+    "autoname": "format:APP-{####}",
+    "creation": "2025-01-18 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "server",
+        "template",
+        "app_name",
+        "domain",
+        "column_break_basic",
+        "status",
+        "created_date",
+        "container_section",
+        "container_name",
+        "internal_port",
+        "column_break_container",
+        "ram_mb",
+        "cpu_percent",
+        "storage_mb",
+        "config_section",
+        "env_variables",
+        "docker_compose_override",
+        "backup_section",
+        "backup_enabled",
+        "last_backup",
+        "backup_status"
+    ],
+    "fields": [
+        {
+            "fieldname": "server",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Server",
+            "options": "Customer Server",
+            "reqd": 1
+        },
+        {
+            "fieldname": "template",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Template",
+            "options": "App Template",
+            "reqd": 1
+        },
+        {
+            "fieldname": "app_name",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "App Name",
+            "reqd": 1,
+            "description": "Friendly name for this app"
+        },
+        {
+            "fieldname": "domain",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Domain",
+            "description": "Domain pointing to this app"
+        },
+        {
+            "fieldname": "column_break_basic",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Status",
+            "options": "Deploying\nRunning\nStopped\nError\nRemoved",
+            "default": "Deploying"
+        },
+        {
+            "fieldname": "created_date",
+            "fieldtype": "Date",
+            "label": "Created Date",
+            "default": "Today"
+        },
+        {
+            "fieldname": "container_section",
+            "fieldtype": "Section Break",
+            "label": "Container Info"
+        },
+        {
+            "fieldname": "container_name",
+            "fieldtype": "Data",
+            "label": "Container Name",
+            "read_only": 1
+        },
+        {
+            "fieldname": "internal_port",
+            "fieldtype": "Int",
+            "label": "Internal Port",
+            "read_only": 1
+        },
+        {
+            "fieldname": "column_break_container",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "ram_mb",
+            "fieldtype": "Int",
+            "label": "RAM Usage (MB)",
+            "read_only": 1
+        },
+        {
+            "fieldname": "cpu_percent",
+            "fieldtype": "Float",
+            "label": "CPU %",
+            "read_only": 1
+        },
+        {
+            "fieldname": "storage_mb",
+            "fieldtype": "Int",
+            "label": "Storage (MB)",
+            "read_only": 1
+        },
+        {
+            "fieldname": "config_section",
+            "fieldtype": "Section Break",
+            "label": "Configuration",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "env_variables",
+            "fieldtype": "Code",
+            "label": "Environment Variables",
+            "options": "Bash"
+        },
+        {
+            "fieldname": "docker_compose_override",
+            "fieldtype": "Code",
+            "label": "Docker Compose Override",
+            "options": "YAML"
+        },
+        {
+            "fieldname": "backup_section",
+            "fieldtype": "Section Break",
+            "label": "Backup"
+        },
+        {
+            "fieldname": "backup_enabled",
+            "fieldtype": "Check",
+            "label": "Backup Enabled",
+            "default": 1
+        },
+        {
+            "fieldname": "last_backup",
+            "fieldtype": "Datetime",
+            "label": "Last Backup",
+            "read_only": 1
+        },
+        {
+            "fieldname": "backup_status",
+            "fieldtype": "Select",
+            "label": "Backup Status",
+            "options": "OK\nWarning\nFailed\nUnknown",
+            "default": "Unknown",
+            "read_only": 1
+        }
+    ],
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2025-01-18 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "AppZ Hosting",
+    "name": "Deployed App",
+    "naming_rule": "Expression",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1
+}

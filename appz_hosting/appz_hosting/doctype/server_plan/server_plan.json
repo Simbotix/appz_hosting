@@ -1,0 +1,177 @@
+{
+    "actions": [],
+    "autoname": "field:plan_name",
+    "creation": "2025-01-18 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "plan_name",
+        "title",
+        "enabled",
+        "column_break_basic",
+        "provider",
+        "provider_server_type",
+        "specs_section",
+        "cpu_cores",
+        "ram_gb",
+        "storage_gb",
+        "bandwidth_tb",
+        "column_break_specs",
+        "max_apps",
+        "description",
+        "pricing_section",
+        "cost_eur",
+        "price_usd",
+        "price_inr",
+        "column_break_pricing",
+        "price_btc_sats",
+        "margin_percent"
+    ],
+    "fields": [
+        {
+            "fieldname": "plan_name",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Plan Name",
+            "reqd": 1,
+            "unique": 1
+        },
+        {
+            "fieldname": "title",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Display Title",
+            "reqd": 1
+        },
+        {
+            "fieldname": "enabled",
+            "fieldtype": "Check",
+            "label": "Enabled",
+            "default": 1
+        },
+        {
+            "fieldname": "column_break_basic",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "provider",
+            "fieldtype": "Select",
+            "label": "Provider",
+            "options": "Hetzner\nVultr",
+            "default": "Hetzner"
+        },
+        {
+            "fieldname": "provider_server_type",
+            "fieldtype": "Data",
+            "label": "Provider Server Type",
+            "description": "e.g., CX32, AX41, AX52"
+        },
+        {
+            "fieldname": "specs_section",
+            "fieldtype": "Section Break",
+            "label": "Specifications"
+        },
+        {
+            "fieldname": "cpu_cores",
+            "fieldtype": "Int",
+            "in_list_view": 1,
+            "label": "CPU Cores"
+        },
+        {
+            "fieldname": "ram_gb",
+            "fieldtype": "Int",
+            "in_list_view": 1,
+            "label": "RAM (GB)"
+        },
+        {
+            "fieldname": "storage_gb",
+            "fieldtype": "Int",
+            "label": "Storage (GB)"
+        },
+        {
+            "fieldname": "bandwidth_tb",
+            "fieldtype": "Int",
+            "label": "Bandwidth (TB)",
+            "default": 20
+        },
+        {
+            "fieldname": "column_break_specs",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "max_apps",
+            "fieldtype": "Int",
+            "label": "Max Apps",
+            "description": "Recommended max apps for this plan"
+        },
+        {
+            "fieldname": "description",
+            "fieldtype": "Small Text",
+            "label": "Description"
+        },
+        {
+            "fieldname": "pricing_section",
+            "fieldtype": "Section Break",
+            "label": "Pricing"
+        },
+        {
+            "fieldname": "cost_eur",
+            "fieldtype": "Currency",
+            "label": "Our Cost (EUR)",
+            "description": "What we pay the provider"
+        },
+        {
+            "fieldname": "price_usd",
+            "fieldtype": "Currency",
+            "in_list_view": 1,
+            "label": "Price (USD)",
+            "reqd": 1
+        },
+        {
+            "fieldname": "price_inr",
+            "fieldtype": "Currency",
+            "label": "Price (INR)"
+        },
+        {
+            "fieldname": "column_break_pricing",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "price_btc_sats",
+            "fieldtype": "Int",
+            "label": "Price (sats)"
+        },
+        {
+            "fieldname": "margin_percent",
+            "fieldtype": "Percent",
+            "label": "Margin %",
+            "read_only": 1
+        }
+    ],
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2025-01-18 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "AppZ Hosting",
+    "name": "Server Plan",
+    "naming_rule": "By fieldname",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1
+}

@@ -1,0 +1,230 @@
+{
+    "actions": [],
+    "autoname": "format:SRV-{####}",
+    "creation": "2025-01-18 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "customer",
+        "server_name",
+        "plan",
+        "status",
+        "column_break_basic",
+        "ip_address",
+        "hostname",
+        "created_date",
+        "monthly_price",
+        "provider_section",
+        "provider",
+        "provider_server_id",
+        "provider_server_type",
+        "location",
+        "column_break_provider",
+        "ssh_key_path",
+        "root_password",
+        "stats_section",
+        "cpu_percent",
+        "ram_percent",
+        "disk_percent",
+        "column_break_stats",
+        "apps_count",
+        "last_health_check",
+        "backup_status",
+        "notes_section",
+        "notes"
+    ],
+    "fields": [
+        {
+            "fieldname": "customer",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Customer",
+            "options": "Customer",
+            "reqd": 1
+        },
+        {
+            "fieldname": "server_name",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Server Name",
+            "reqd": 1,
+            "description": "Customer's name for this server"
+        },
+        {
+            "fieldname": "plan",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Plan",
+            "options": "Server Plan",
+            "reqd": 1
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Status",
+            "options": "Pending Payment\nProvisioning\nActive\nSuspended\nTerminated",
+            "default": "Pending Payment"
+        },
+        {
+            "fieldname": "column_break_basic",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "ip_address",
+            "fieldtype": "Data",
+            "label": "IP Address",
+            "read_only": 1
+        },
+        {
+            "fieldname": "hostname",
+            "fieldtype": "Data",
+            "label": "Hostname"
+        },
+        {
+            "fieldname": "created_date",
+            "fieldtype": "Date",
+            "label": "Created Date",
+            "default": "Today"
+        },
+        {
+            "fieldname": "monthly_price",
+            "fieldtype": "Currency",
+            "label": "Monthly Price"
+        },
+        {
+            "fieldname": "provider_section",
+            "fieldtype": "Section Break",
+            "label": "Provider Details (Hidden from Customer)",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "provider",
+            "fieldtype": "Select",
+            "label": "Provider",
+            "options": "Hetzner\nVultr",
+            "default": "Hetzner"
+        },
+        {
+            "fieldname": "provider_server_id",
+            "fieldtype": "Data",
+            "label": "Provider Server ID",
+            "description": "ID from Hetzner/Vultr API"
+        },
+        {
+            "fieldname": "provider_server_type",
+            "fieldtype": "Data",
+            "label": "Provider Server Type"
+        },
+        {
+            "fieldname": "location",
+            "fieldtype": "Data",
+            "label": "Location"
+        },
+        {
+            "fieldname": "column_break_provider",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "ssh_key_path",
+            "fieldtype": "Data",
+            "label": "SSH Key Path"
+        },
+        {
+            "fieldname": "root_password",
+            "fieldtype": "Password",
+            "label": "Root Password"
+        },
+        {
+            "fieldname": "stats_section",
+            "fieldtype": "Section Break",
+            "label": "Current Stats"
+        },
+        {
+            "fieldname": "cpu_percent",
+            "fieldtype": "Percent",
+            "label": "CPU Usage",
+            "read_only": 1
+        },
+        {
+            "fieldname": "ram_percent",
+            "fieldtype": "Percent",
+            "label": "RAM Usage",
+            "read_only": 1
+        },
+        {
+            "fieldname": "disk_percent",
+            "fieldtype": "Percent",
+            "label": "Disk Usage",
+            "read_only": 1
+        },
+        {
+            "fieldname": "column_break_stats",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "apps_count",
+            "fieldtype": "Int",
+            "label": "Apps Deployed",
+            "read_only": 1
+        },
+        {
+            "fieldname": "last_health_check",
+            "fieldtype": "Datetime",
+            "label": "Last Health Check",
+            "read_only": 1
+        },
+        {
+            "fieldname": "backup_status",
+            "fieldtype": "Select",
+            "label": "Backup Status",
+            "options": "OK\nWarning\nFailed\nUnknown",
+            "default": "Unknown",
+            "read_only": 1
+        },
+        {
+            "fieldname": "notes_section",
+            "fieldtype": "Section Break",
+            "label": "Notes"
+        },
+        {
+            "fieldname": "notes",
+            "fieldtype": "Text",
+            "label": "Notes"
+        }
+    ],
+    "index_web_pages_for_search": 0,
+    "links": [
+        {
+            "link_doctype": "Deployed App",
+            "link_fieldname": "server"
+        }
+    ],
+    "modified": "2025-01-18 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "AppZ Hosting",
+    "name": "Customer Server",
+    "naming_rule": "Expression",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1
+}

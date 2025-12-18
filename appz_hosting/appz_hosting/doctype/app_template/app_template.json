@@ -1,0 +1,191 @@
+{
+    "actions": [],
+    "autoname": "field:template_name",
+    "creation": "2025-01-18 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "template_name",
+        "title",
+        "category",
+        "enabled",
+        "column_break_basic",
+        "version",
+        "icon",
+        "description",
+        "requirements_section",
+        "min_ram_mb",
+        "min_storage_gb",
+        "internal_port",
+        "column_break_req",
+        "healthcheck_path",
+        "requires_database",
+        "database_type",
+        "docker_section",
+        "docker_compose",
+        "env_template",
+        "scripts_section",
+        "backup_script",
+        "restore_script"
+    ],
+    "fields": [
+        {
+            "fieldname": "template_name",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Template Name",
+            "reqd": 1,
+            "unique": 1,
+            "description": "e.g., wordpress, n8n, ghost"
+        },
+        {
+            "fieldname": "title",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Display Title",
+            "reqd": 1
+        },
+        {
+            "fieldname": "category",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Category",
+            "options": "CMS\nBusiness\nAutomation\nDevelopment\nDatabase\nOther"
+        },
+        {
+            "fieldname": "enabled",
+            "fieldtype": "Check",
+            "label": "Enabled",
+            "default": 1
+        },
+        {
+            "fieldname": "column_break_basic",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "version",
+            "fieldtype": "Data",
+            "label": "Version",
+            "description": "e.g., 6.4, latest"
+        },
+        {
+            "fieldname": "icon",
+            "fieldtype": "Attach Image",
+            "label": "Icon"
+        },
+        {
+            "fieldname": "description",
+            "fieldtype": "Small Text",
+            "label": "Description"
+        },
+        {
+            "fieldname": "requirements_section",
+            "fieldtype": "Section Break",
+            "label": "Requirements"
+        },
+        {
+            "fieldname": "min_ram_mb",
+            "fieldtype": "Int",
+            "in_list_view": 1,
+            "label": "Min RAM (MB)",
+            "default": 512
+        },
+        {
+            "fieldname": "min_storage_gb",
+            "fieldtype": "Int",
+            "label": "Min Storage (GB)",
+            "default": 5
+        },
+        {
+            "fieldname": "internal_port",
+            "fieldtype": "Int",
+            "label": "Internal Port",
+            "description": "Port the app listens on"
+        },
+        {
+            "fieldname": "column_break_req",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "healthcheck_path",
+            "fieldtype": "Data",
+            "label": "Healthcheck Path",
+            "default": "/"
+        },
+        {
+            "fieldname": "requires_database",
+            "fieldtype": "Check",
+            "label": "Requires Database"
+        },
+        {
+            "fieldname": "database_type",
+            "fieldtype": "Select",
+            "label": "Database Type",
+            "options": "\nMySQL\nPostgreSQL\nSQLite",
+            "depends_on": "eval:doc.requires_database"
+        },
+        {
+            "fieldname": "docker_section",
+            "fieldtype": "Section Break",
+            "label": "Docker Configuration"
+        },
+        {
+            "fieldname": "docker_compose",
+            "fieldtype": "Code",
+            "label": "Docker Compose",
+            "options": "YAML"
+        },
+        {
+            "fieldname": "env_template",
+            "fieldtype": "Code",
+            "label": "Environment Template",
+            "options": "Bash",
+            "description": "Template for .env file"
+        },
+        {
+            "fieldname": "scripts_section",
+            "fieldtype": "Section Break",
+            "label": "Backup/Restore Scripts",
+            "collapsible": 1
+        },
+        {
+            "fieldname": "backup_script",
+            "fieldtype": "Code",
+            "label": "Backup Script",
+            "options": "Bash"
+        },
+        {
+            "fieldname": "restore_script",
+            "fieldtype": "Code",
+            "label": "Restore Script",
+            "options": "Bash"
+        }
+    ],
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2025-01-18 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "AppZ Hosting",
+    "name": "App Template",
+    "naming_rule": "By fieldname",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1
+}
